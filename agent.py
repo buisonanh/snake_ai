@@ -15,7 +15,7 @@ class Agent:
         self.epsilon = 0 # randomness
         self.gamma = 0 # discount rate
         self.memory = deque(maxlen=MAX_MEMORY) # popleft()
-        
+
 
     def get_state(self, game):
         pass
@@ -33,7 +33,22 @@ class Agent:
         pass
 
 def train():
-    pass
+    plot_scores = []
+    plot_mean_scores = []
+    total_score = 0
+    record = 0
+    agent = Agent()
+    game = SnakeGameAI()
+    while True:
+        # get old state
+        state_old = agent.get_state(game)
+
+        # get move
+        final_move = agent.get_action(state_old)
+
+        # perform move and get new state
+        reward, done, score = game.play_step(final_move)
+        state_new = agent.get_state(game)
 
 
 if __name__ == '__main__':
